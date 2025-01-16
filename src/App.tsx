@@ -1,6 +1,7 @@
 import YNABStepper from "./components/YNABStepper.tsx";
 import {Box, Typography} from "@mui/material";
 import {useEffect, useState} from "react";
+import img from "../public/YNAB-Logo-Dark.png"
 
 function App() {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -21,7 +22,7 @@ function App() {
             <Box display="flex" flexDirection={isMobile ? "column" : "row"} alignItems="center" gap={1}>
                 <Box
                     component="img"
-                    src="../public/YNAB-Logo-Dark.png"
+                    src={img}
                     alt="YNAB"
                     sx={{
                         height: '3rem',
