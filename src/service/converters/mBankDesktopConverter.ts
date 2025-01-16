@@ -1,6 +1,6 @@
 import { NewTransaction } from "ynab";
 
-export const mBankConverter = async (file: File, accountId: string): Promise<Array<NewTransaction>> => {
+export const MBankDesktopConverter = async (file: File, accountId: string): Promise<Array<NewTransaction>> => {
     const CSV_HEADER = "#Data operacji;#Opis operacji;#Rachunek;#Kategoria;#Kwota;";
 
     const transactions: Array<NewTransaction> = [];
@@ -23,21 +23,22 @@ export const mBankConverter = async (file: File, accountId: string): Promise<Arr
     const dataLines = lines.slice(startIndex + 1);
 
     // Regular expression to parse each line
-    const lineRegex = /^([^;]+);"(.*?)";"(.*?)";"(.*?)";([^;]+);;$/;
+    const lineRegex = /^([^;]+);([^;]+);([^;]+);([^;]+);([^;]+);.*$/;
 
     for (const row of dataLines) {
-        const trimmedRow = row.trim();
+        // Remove all " and ' characters and trim whitespace
+        const cleanedRow = row.replace(/["']/g, "").trim();
 
         // Skip empty lines
-        if (!trimmedRow) {
+        if (!cleanedRow) {
             continue;
         }
 
         // Match the row with the regex
-        const match = trimmedRow.match(lineRegex);
+        const match = cleanedRow.match(lineRegex);
 
         if (!match) {
-            console.warn(`Row does not match the expected format: ${trimmedRow}`);
+            console.warn(`Row does not match the expected format: ${cleanedRow}`);
             continue;
         }
 

@@ -1,5 +1,6 @@
 import {NewTransaction} from "ynab";
-import {mBankConverter} from "./converters/mBankConverter.ts";
+import {MBankDesktopConverter} from "./converters/mBankDesktopConverter.ts";
+import {MBankMobileConverter} from "./converters/mBankMobileConverter.ts";
 
 export interface Converter {
     id: string;
@@ -8,9 +9,14 @@ export interface Converter {
 }
 
 export const transactionConverters: Record<string, Converter> = {
-    mbankPlCSV: {
-        id: 'mbankPlCSV',
-        name: 'mBank PL csv converter',
-        convert: mBankConverter
+    mbankPlDesktopCSV: {
+        id: 'mbankPlDesktopCSV',
+        name: 'mBank PL desktop csv converter',
+        convert: MBankDesktopConverter
     },
+    mbankPlMobileCSV: {
+        id: 'mbankPlMobileCSV',
+        name: 'mBank PL mobile csv converter',
+        convert: MBankMobileConverter
+    }
 };

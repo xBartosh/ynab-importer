@@ -18,7 +18,16 @@ function App() {
     }, []);
 
     return (
-        <Box px={3} my={2} display="flex" flexDirection="column" gap={4} justifyContent="center">
+        <Box
+            px={3}
+            my={2}
+            display="flex"
+            flexDirection="column"
+            gap={4}
+            justifyContent="center"
+            maxWidth={"1200px"}
+            margin="0 auto"
+        >
             <Box display="flex" flexDirection={isMobile ? "column" : "row"} alignItems="center" gap={1}>
                 <Box
                     component="img"
