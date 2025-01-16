@@ -7,6 +7,9 @@ import Cookies from 'js-cookie';
 
 interface StepperContextType {
     isMobile: boolean;
+    expectedPassword: string;
+    password: string;
+    setPassword: React.Dispatch<React.SetStateAction<string>>;
     activeStep: number;
     setActiveStep: React.Dispatch<React.SetStateAction<number>>;
     config: YNABConfig;
@@ -38,6 +41,8 @@ export const StepperProvider: React.FC<{ children: React.ReactNode }> = ({childr
         budgetId: Cookies.get('ynab_importer_budgetId') || '',
         accountId: Cookies.get('ynab_importer_accountId') || '',
     });
+    const expectedPassword = import.meta.env.VITE_PASSWORD;
+    const [password, setPassword] = useState('');
     const [error, setError] = useState<string | null>(null);
     const [budgets, setBudgets] = useState<Array<BudgetSummary>>([]);
     const [accounts, setAccounts] = useState<Array<Account>>([]);
@@ -77,6 +82,9 @@ export const StepperProvider: React.FC<{ children: React.ReactNode }> = ({childr
         <StepperContext.Provider
             value={{
                 isMobile,
+                expectedPassword,
+                password,
+                setPassword,
                 activeStep,
                 setActiveStep,
                 config,

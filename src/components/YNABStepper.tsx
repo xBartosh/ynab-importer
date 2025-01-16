@@ -7,11 +7,38 @@ import TransactionChoice from "./TransactionChoice.tsx";
 import {YNABStep} from "../entity/YNABStep.ts";
 import YNABImporter from "./YNABImporter.tsx";
 import ContextView from "./ContextView.tsx";
+import PasswordForm from "./PasswordForm.tsx";
 
 const YNABStepperContent = () => {
-    const {isMobile, activeStep, setActiveStep, config, setConfig, file, error, transactionsToImport, setError} = useStepperContext();
+    const {
+        isMobile,
+        expectedPassword,
+        password,
+        activeStep,
+        setActiveStep,
+        config,
+        setConfig,
+        file,
+        error,
+        transactionsToImport,
+        setError
+    } = useStepperContext();
 
     const steps: YNABStep[] = [
+        {
+            label: 'Enter password',
+            description: 'Enter your password.',
+            Component: PasswordForm,
+            onNext: () => {
+                if (expectedPassword !== password) {
+                    setError('Incorrect password');
+                    return false;
+                }
+
+                setError(null);
+                return true;
+            }
+        },
         {
             label: 'Choose your budget',
             description: 'Select your budget.',
@@ -103,7 +130,11 @@ const YNABStepperContent = () => {
                 </Alert>
             )}
             <Box sx={{display: 'flex', width: '100%', flexDirection: isMobile ? "column" : "row", gap: 3}}>
-                <Box sx={{flexBasis: '25%', borderRight: isMobile ? '' : '1px solid #ddd', paddingRight: isMobile ? 0 : 2}}>
+                <Box sx={{
+                    flexBasis: '25%',
+                    borderRight: isMobile ? '' : '1px solid #ddd',
+                    paddingRight: isMobile ? 0 : 2
+                }}>
                     <Stepper activeStep={activeStep} orientation="vertical">
                         {steps.map((step, index) => (
                             <Step key={index}>
