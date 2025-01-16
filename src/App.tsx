@@ -1,4 +1,3 @@
-import './App.css'
 import YNABStepper from "./components/YNABStepper.tsx";
 import {Box, Typography} from "@mui/material";
 import {useEffect, useState} from "react";

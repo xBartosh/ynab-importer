@@ -44,6 +44,8 @@ export const mBankConverter = async (file: File, accountId: string): Promise<Arr
         // Extract columns
         const [, dateStr, title, account, category, amountStr] = match;
 
+        console.log(dateStr, title, account, category, amountStr);
+
         // Process the amount
         const processedAmountStr = amountStr.trim().replace(" ", "").replace("PLN", "").replace(",", ".");
 

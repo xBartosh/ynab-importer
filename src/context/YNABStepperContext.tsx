@@ -3,7 +3,7 @@ import {YNABConfig} from "../entity/YNABConfig.ts";
 import {Account, BudgetSummary, NewTransaction} from "ynab";
 import {getBudgets} from "../api/YNABApiService.ts";
 import {Converter, transactionConverters} from "../service/TransactionConverter.ts";
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie';
 
 interface StepperContextType {
     isMobile: boolean;
