@@ -2,10 +2,10 @@
 
 This is a transaction importer for [YNAB](ynab.com) with custom converters.
 I created it due to YNAB's lack of support for my bank since YNAB changed its direct import provider to Plaid.
-Use it on your own risk, as it's not officially supported by YNAB.
+Use it on your own risk.
 ![app](public/app-ss.png)
 
-## Usage (self hosted app)
+## Usage (as an app hosted on Vercel)
 1. Go to [Vercel](https://vercel.com) and create an account if you don't have one.
 2. In "Import Git Repository", click "Import Third-Party Git Repository".
 3. Enter this URL https://github.com/xBartosh/ynab-importer.git
