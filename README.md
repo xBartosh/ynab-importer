@@ -31,4 +31,4 @@ Feel free to contribute by adding more converters, reporting or fixing bugs.
 
 ### How to add a new converter
 1. Create a new converter in `src/service/converters` directory.
-2. Add a new converter in `src/service/TransactionConverter.ts` file.
+2. Add the new converter in `src/service/TransactionConverter.ts` file.
